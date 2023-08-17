@@ -23,3 +23,5 @@ for (let j = 0; j < tamanhoLista; j++) {
 }
 console.log("lista " + lista);
 console.log("lista ordenada " + listaOrdenada);
+
+// adicionar um número e ordenar
