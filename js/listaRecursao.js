@@ -1,0 +1,1 @@
+// fazer uma função que printa todos os numeros anteriores ao número do parâmetro
