@@ -14,24 +14,38 @@ cel *create_cell(int valor) {
   return celula;
 }
 
-void add_cell(cel *p, int valor, bool posicao) {
+cel* add_cell(cel *p, int valor, int posicao) {
   cel *new_p = (cel *)malloc(sizeof(cel));
-  if (posicao == true){
+  // insere antes
+  if (posicao == 1){
+    new_p->value = valor;
+    new_p->next = p;
+    return new_p;
+  }
+  // insere depois
+  else {
     new_p->next = p->next;
     new_p->value = valor;
-    p = new_p;
-  } else {
-    new_p->next = p;
-    new_p->value = valor;
     p->next = new_p;
+    return p;
   }
 }
 
 void remove_cell(cel *p) {
-  cel *new_p = (cel *)malloc(sizeof(cel));
-  new_p->next = p->next;
-  p->next = new_p;
-  new_p->value = valor;
+    cel *d = p->next;
+    p->next = d->next;
+    free(d);
 }
 
-int main() {}
+int main() {
+    printf("salve\nesse é meu algoritmo pra manipulação de celulas");
+
+    printf("Criando célula");
+    cel celula = create_cell(69);
+    printf("adicionando célula");
+    cel * myCell;
+    myCell = &celula;
+    myCell = (myCell,96,1);
+    
+    printf("");
+}
