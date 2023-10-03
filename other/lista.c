@@ -30,6 +30,15 @@ void remove_cell(cel *p) {
     free(d);
 }
 
+int list_lengh(cel *p){
+  int cont = 0;
+  while (p->next != NULL){
+    cont += 1;
+    p = p->next;
+  }
+  return cont;
+}
+
 int main() {
     printf("salve\nesse é meu algoritmo pra manipulação de celulas");
 
@@ -43,7 +52,7 @@ int main() {
   cel *p = celula;
   p = add_cell(p,i,2);
   }
-  
+
   printf("lista criada com sucesso");
   return 0;
 }
