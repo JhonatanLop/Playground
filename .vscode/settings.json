@@ -18,5 +18,6 @@
             "username": "USER_VENDA",
             "password": "aluno"
         }
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }
