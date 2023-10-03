@@ -1,4 +1,22 @@
 {
     "sqltools.useNodeRuntime": true,
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "sqltools.connections": [
+        {
+            "oracleOptions": {
+                "autoCommit": false,
+                "lowerCase": false,
+                "thickMode": false,
+                "limitPrefetchRows": false
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1521,
+            "driver": "Oracle",
+            "name": "FATEC",
+            "database": "XE",
+            "username": "USER_VENDA",
+            "password": "aluno"
+        }
+    ]
 }
