@@ -1,4 +1,3 @@
-package Atividades;
 
 public class ExercicioB {
     // entrada = leia_inteiros("")

@@ -1,4 +1,3 @@
-package Atividades;
 
 public class Poligono {
     int lados;
