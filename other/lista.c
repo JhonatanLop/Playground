@@ -68,6 +68,27 @@ void print(cel *p) {
   }
 }
 
+void searchByValue(cel *p, int value){
+  cel *head = p;
+  int positions = {};
+  int count = 0;
+  int index = 0;
+    while (head->next != NULL)
+    {
+      if (head->value  == value)
+      {
+        positions = (int*)realloc(positions, (count+ 1) * sizeof(int));
+        positions[count] = index;
+      }
+      head = head->next;
+      index++;
+    }
+    // Atualizar o número de posições encontradas
+    *numPositions = count;
+
+    return positions;
+}
+
 int main() {
   int count;
   cel *celula = (cel *)malloc(sizeof(cel));
