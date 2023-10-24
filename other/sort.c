@@ -1,3 +1,10 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -5,6 +12,36 @@ typedef struct cel {
   int value;
   struct cel *next;
 } cel;
+
+void swap(cel *p, cel *q) {
+  cel temp = *p;
+  *p = *q;
+  *q = temp;
+}
+
+int list_lengh(cel *p) {
+  int cont = 0;
+  while (p->next != NULL) {
+    cont += 1;
+    p = p->next;
+  }
+  return cont;
+}
+
+void sort(cel *p, int size) {
+  int count = 1;
+  for (size_t i = 0; i < (size - 1); i++) {
+    cel *head = (p + i + 1);
+    while (head->next != NULL) {
+      if ((p + i)->value > head->value) {
+        swap((p + i), (p + count));
+        continue;
+      }
+      count++;
+      head = head->next;
+    }
+  }
+}
 
 cel *add_cell(cel *p, int valor, int posicao) {
   cel *new_p = (cel *)malloc(sizeof(cel));
@@ -24,42 +61,6 @@ cel *add_cell(cel *p, int valor, int posicao) {
   }
 }
 
-void remove_cell(cel *p) {
-  cel *d = p->next;
-  p->next = d->next;
-  free(d);
-}
-
-int list_lengh(cel *p) {
-  int cont = 0;
-  while (p->next != NULL) {
-    cont += 1;
-    p = p->next;
-  }
-  return cont;
-}
-
-void swap(cel *p, cel *q) {
-  cel temp = *p;
-  *p = *q;
-  *q = temp;
-}
-
-void sort(cel *p, int size) {
-  int count = 1;
-  for (size_t i = 0; i < (size - 1); i++) {
-    cel *head = (p + i + 1);
-    while (head->next != NULL) {
-      if ((p + i)->value > head->value) {
-        swap((p + i), (p + count));
-        continue;
-      }
-      count++;
-      head = head->next;
-    }
-  }
-}
-
 void print(cel *p) {
   cel *head = p;
   while (head->next != NULL) {
@@ -68,7 +69,8 @@ void print(cel *p) {
   }
 }
 
-int main() {
+int main()
+{
   int count;
   cel *celula = (cel *)malloc(sizeof(cel));
 
