@@ -23,7 +23,15 @@ void remove_cell(cel *p) {
     d->next = d->next->next;
   }
   d->next = NULL;
-  free(d);
+  free(d->next);
+}
+
+void print(cel *p) {
+  cel *head = p;
+  while (head->next != NULL) {
+    printf("%d ", head->value);
+    head = head->next;
+  }
 }
 
 int main() {
@@ -33,10 +41,26 @@ int main() {
   celula->value = 69;
   celula->next = NULL;
 
-  // criando fila
-  for (int i = 0; i < 4; i++) {
-    cel *p = celula;
-    p = add_cell(p, i);
-  }
+  celula = add_cell_fila(celula, 1);
+  celula = add_cell_fila(celula, 2);
+  celula = add_cell_fila(celula, 3);
+  celula = add_cell_fila(celula, 4);
+  celula = add_cell_fila(celula, 5);
+  
+  printf("%d\n",celula->value);
+  printf("%d\n",celula->next->value);
+  printf("%d\n",celula->next->next->value);
+  printf("%d\n",celula->next->next->next->value);
+  printf("%d\n",celula->next->next->next->next->value);
+  printf("%d\n",celula->next->next->next->next->next->value);
+  
+  remove_cell(celula);
+  
+  printf("%d\n",celula->value);
+  printf("%d\n",celula->next->value);
+  printf("%d\n",celula->next->next->value); // some a partir daqui
+  printf("%d\n",celula->next->next->next->value);
+  printf("%d\n",celula->next->next->next->next->value);
+  printf("%d\n",celula->next->next->next->next->next->value);
  return 0;
 }
