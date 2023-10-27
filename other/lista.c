@@ -39,27 +39,6 @@ int list_lengh(cel *p) {
   return cont;
 }
 
-void swap(cel *p, cel *q) {
-  cel temp = *p;
-  *p = *q;
-  *q = temp;
-}
-
-void sort(cel *p, int size) {
-  int count = 1;
-  for (size_t i = 0; i < (size - 1); i++) {
-    cel *head = (p + i + 1);
-    while (head->next != NULL) {
-      if ((p + i)->value > head->value) {
-        swap((p + i), (p + count));
-        continue;
-      }
-      count++;
-      head = head->next;
-    }
-  }
-}
-
 void print(cel *p) {
   cel *head = p;
   while (head->next != NULL) {
@@ -79,9 +58,6 @@ int main() {
   for (int i = 0; i < 4; i++) {
     cel *p = celula;
     p = add_cell(p, i, 2);
-
-    int size = list_lengh(p);
-    sort(p, size);
 
     if (i == 3) {
       print(p);
