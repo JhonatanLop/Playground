@@ -1,20 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct veia
+{
+  char nome;
+  int idade;
+};
+
 typedef struct cel {
-  int value;
+  veia value;
   struct cel *next;
 } cel;
 
-cel *add_cell_fila(cel *p, int valor) {
-    cel *head = p;
-  cel *new_p = (cel *)malloc(sizeof(cel));
+// sem cabeça
 
+cel *add_veia_na_fila(cel *p, veia valor) {
+  cel *new_p = (cel *)malloc(sizeof(cel));
   new_p->value = valor;
 
-  // insere antes
-    new_p->next = head;
-    return new_p;
+  new_p->next = p;
+  return new_p;
 }
 
 void remove_cell(cel *p) {
@@ -38,9 +43,13 @@ void print(cel *p) {
 int main() {
   int count;
   cel *celula = (cel *)malloc(sizeof(cel));
+  veia veia1 = {'a', 1};
+  veia veia2 = {'b', 2};
+  veia veia3 = {'c', 3};
+  veia veia4 = {'d', 4};
+  veia veia5 = {'e', 5};
 
-  celula->value = 0;
-  celula->next = NULL;
+  celula->value = veia1;
 
   celula = add_cell_fila(celula, 1);
   celula = add_cell_fila(celula, 2);

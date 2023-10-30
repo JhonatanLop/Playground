@@ -6,6 +6,7 @@ typedef struct cel {
   struct cel *next;
 } cel;
 
+// com cabeça
 
 cel *add_cell(cel *p, int valor) {
   cel *new_p = (cel *)malloc(sizeof(cel));
