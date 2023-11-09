@@ -3,13 +3,8 @@
 #include <stdlib.h>
 #define MAX_NAME_LENGTH 100
 
-typedef struct pessoa {
-  char nome[MAX_NAME_LENGTH];
-  int idade;
-} pessoa;
-
 typedef struct cel {
-  pessoa value;
+  char algoritmo;
   struct cel *next;
 } cel;
 
@@ -26,68 +21,73 @@ fila create_empty_fila(){
 }
 
 // insere pessoa na fila
-void entrar_fila(pessoa senhora, fila *f){
+void inserir_comando(char comando, fila *f){
   cel *new = (cel *)malloc(sizeof(cel));
-  new->value = senhora;
+  new->algoritmo = comando;
   new->next = NULL;
   if(f->inicio == NULL)
   {
-    printf("Fila vazia");
     f->inicio = new;
     f->fim = new;
   }
   else
   {
-    printf("Fila não vazia");
     f->fim->next = new;
     f->fim = new;
   }
 }
 
-pessoa sair_fila(fila *f){
+char extrair_comando(fila *f){
   if (f->inicio == NULL){
     printf("Fila vazia");
     exit(1);
   } else{
     cel *p = f->inicio;
     f->inicio = f->inicio->next;
-    pessoa senhora = p->value;
+    char command = p->algoritmo;
     free(p);
-    return senhora;
+    return command;
   }
 }
 
 // imprime a fila
 void print(fila *f){
-  cel *p = f->inicio;
-  printf("printando a fila' \n");
-  while(p != NULL){
-    printf("%s, %d anos\n", p->value.nome, p->value.idade);
-    p = p->next;
+  cel *aux = f->inicio;
+  while (aux->next != NULL) {
+    printf("%c\n", aux->algoritmo);
+    aux = aux->next;
   }
+  printf("%c\n", aux->algoritmo);
 }
 
 // função que testa o algoritmo
 int main(){
   fila f = create_empty_fila();
-  pessoa p1;
-    strcpy(p1.nome,"jhow");
-    p1.idade = 20;
-  pessoa p2;
-    strcpy(p2.nome,"paulin");
-    p2.idade = 30;
-  pessoa p3;
-    strcpy(p3.nome,"marquito");
-    p3.idade = 25;
-  
-  entrar_fila(p1, &f);
-  entrar_fila(p2, &f);
-  entrar_fila(p3, &f);
+  char c1 = 'a';
+  char c2 = 'b';
+  char c3 = 'c';
+  char c4 = 'd';
+  char c5 = 'e';
+
+  inserir_comando(c1, &f);
+  inserir_comando(c2, &f);
+  inserir_comando(c3, &f);
+  inserir_comando(c4, &f);
+  inserir_comando(c5, &f);
 
   print(&f);
 
-  pessoa senhora = sair_fila(&f);
-  printf("\nPessoa removida: %s, %d anos\n", senhora.nome, senhora.idade);
+  char comando = extrair_comando(&f);
+  printf("\nComando extraido: %c\n", comando);
+
+  char comandoa = extrair_comando(&f);
+  printf("\nComando extraido: %c\n", comandoa);
+
+  print(&f);
+
+  printf("\nInserindo comando 'f'\n");
+  char c6 = 'f';
+  inserir_comando(c6, &f);
 
   print(&f);
 
