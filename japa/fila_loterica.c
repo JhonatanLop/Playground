@@ -1,66 +1,95 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
+#define MAX_NAME_LENGTH 100
 
-typedef struct veia
-{
-  char nome;
+typedef struct pessoa {
+  char nome[MAX_NAME_LENGTH];
   int idade;
-};
+} pessoa;
 
 typedef struct cel {
-  veia value;
+  pessoa value;
   struct cel *next;
 } cel;
 
-// sem cabeça
+typedef struct fila {
+  cel *inicio;
+  cel *fim;
+} fila;
 
-cel *add_veia_na_fila(cel *p, veia valor) {
-  cel *new_p = (cel *)malloc(sizeof(cel));
-  new_p->value = valor;
-
-  new_p->next = p;
-  return new_p;
+fila create_empty_fila(){
+  fila f;
+  f.inicio = NULL;
+  f.fim = NULL;
+  return f;
 }
 
-void remove_cell(cel *p) {
-  cel *d = p;
-  while (d->next->next != NULL)
+// insere pessoa na fila
+void entrar_fila(pessoa senhora, fila *f){
+  cel *new = (cel *)malloc(sizeof(cel));
+  new->value = senhora;
+  new->next = NULL;
+  if(f->inicio == NULL)
   {
-    d = d->next;
+    printf("Fila vazia");
+    f->inicio = new;
+    f->fim = new;
   }
-  d->next = NULL;
+  else
+  {
+    printf("Fila não vazia");
+    f->fim->next = new;
+    f->fim = new;
+  }
 }
 
-void print(cel *p) {
-  cel *head = p;
-  while (head->next != NULL) {
-    printf("%d ", head->value);
-    head = head->next;
+pessoa sair_fila(fila *f){
+  if (f->inicio == NULL){
+    printf("Fila vazia");
+    exit(1);
+  } else{
+    cel *p = f->inicio;
+    f->inicio = f->inicio->next;
+    pessoa senhora = p->value;
+    free(p);
+    return senhora;
   }
-  printf("%d ", head->value);
 }
 
-int main() {
-  int count;
-  cel *celula = (cel *)malloc(sizeof(cel));
-  veia veia1 = {'a', 1};
-  veia veia2 = {'b', 2};
-  veia veia3 = {'c', 3};
-  veia veia4 = {'d', 4};
-  veia veia5 = {'e', 5};
+// imprime a fila
+void print(fila *f){
+  cel *p = f->inicio;
+  printf("printando a fila' \n");
+  while(p != NULL){
+    printf("%s, %d anos\n", p->value.nome, p->value.idade);
+    p = p->next;
+  }
+}
 
-  celula->value = veia1;
-
-  celula = add_cell_fila(celula, 1);
-  celula = add_cell_fila(celula, 2);
-  celula = add_cell_fila(celula, 3);
-  celula = add_cell_fila(celula, 4);
-  celula = add_cell_fila(celula, 5);
-
-  remove_cell(celula);
-  remove_cell(celula);
-
- print(celula);  // 5 4 3 2 1
+// função que testa o algoritmo
+int main(){
+  fila f = create_empty_fila();
+  pessoa p1;
+    strcpy(p1.nome,"jhow");
+    p1.idade = 20;
+  pessoa p2;
+    strcpy(p2.nome,"paulin");
+    p2.idade = 30;
+  pessoa p3;
+    strcpy(p3.nome,"marquito");
+    p3.idade = 25;
   
- return 0;
+  entrar_fila(p1, &f);
+  entrar_fila(p2, &f);
+  entrar_fila(p3, &f);
+
+  print(&f);
+
+  pessoa senhora = sair_fila(&f);
+  printf("\nPessoa removida: %s, %d anos\n", senhora.nome, senhora.idade);
+
+  print(&f);
+
+  return 0;
 }
