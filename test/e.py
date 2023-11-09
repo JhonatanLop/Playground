@@ -1,3 +1,5 @@
+import sys
+
 from b import read_input_file
 from c import write_output_file
 # Função para validar a posição de uma peça
