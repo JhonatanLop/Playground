@@ -8,42 +8,30 @@ typedef struct cel {
   struct cel *next;
 } cel;
 
-typedef struct fila {
-  cel *inicio;
-  cel *fim;
-} fila;
-
-fila create_empty_fila(){
-  fila f;
-  f.inicio = NULL;
-  f.fim = NULL;
-  return f;
-}
-
 // insere pessoa na fila
-void inserir_comando(char comando, fila *f){
+void inserir_comando(char comando, cel *init, cel *fim){
   cel *new = (cel *)malloc(sizeof(cel));
   new->algoritmo = comando;
   new->next = NULL;
-  if(f->inicio == NULL)
+  if(fim->next == NULL)
   {
-    f->inicio = new;
-    f->fim = new;
+    init->next = new;
+    fim->next = new;
   }
   else
   {
-    f->fim->next = new;
-    f->fim = new;
+    new->next = init;
+    init = new;
   }
 }
 
-char extrair_comando(fila *f){
-  if (f->inicio == NULL){
-    printf("Fila vazia");
+char extrair_comando(cel *fim){
+  if (fim->next == NULL){
+    printf("Sem comandos na fila\n");
     exit(1);
   } else{
-    cel *p = f->inicio;
-    f->inicio = f->inicio->next;
+    cel *p = fim->next;
+    fim->next = fim->next->next;
     char command = p->algoritmo;
     free(p);
     return command;
@@ -51,8 +39,8 @@ char extrair_comando(fila *f){
 }
 
 // imprime a fila
-void print(fila *f){
-  cel *aux = f->inicio;
+void print(cel *fim){
+  cel *aux = fim->next;
   while (aux->next != NULL) {
     printf("%c\n", aux->algoritmo);
     aux = aux->next;
@@ -62,34 +50,45 @@ void print(fila *f){
 
 // função que testa o algoritmo
 int main(){
-  fila f = create_empty_fila();
   char c1 = 'a';
   char c2 = 'b';
   char c3 = 'c';
   char c4 = 'd';
   char c5 = 'e';
 
-  inserir_comando(c1, &f);
-  inserir_comando(c2, &f);
-  inserir_comando(c3, &f);
-  inserir_comando(c4, &f);
-  inserir_comando(c5, &f);
+  cel *fim;
+  cel *init;
+  // fim->next = NULL;
+  // init->next = NULL;
 
-  print(&f);
+  cel *proc1 = (cel *)malloc(sizeof(cel));
+  fim = proc1;
+  init = proc1;
+  proc1->algoritmo = '0';
+  proc1->next = NULL;
 
-  char comando = extrair_comando(&f);
-  printf("\nComando extraido: %c\n", comando);
 
-  char comandoa = extrair_comando(&f);
-  printf("\nComando extraido: %c\n", comandoa);
+  inserir_comando(c1, init, fim);
+  inserir_comando(c2, init, fim);
+  inserir_comando(c3, init, fim);
+  inserir_comando(c4, init, fim);
+  inserir_comando(c5, init, fim);
+  print(fim);
 
-  print(&f);
+
+  // char comando = extrair_comando(fim);
+  // printf("\nComando extraido: %c\n", comando);
+
+  // char comandoa = extrair_comando(fim);
+  // printf("\nComando extraido: %c\n", comandoa);
+
+  print(fim);
 
   printf("\nInserindo comando 'f'\n");
   char c6 = 'f';
-  inserir_comando(c6, &f);
+  inserir_comando(c6, init, fim);
 
-  print(&f);
+  print(fim);
 
   return 0;
 }
