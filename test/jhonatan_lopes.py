@@ -1,115 +1,206 @@
-class Board:
-    def __init__(self):
-        self.board = [[None for _ in range(15)] for _ in range(15)]
+TAB_X = [str(i) for i in range(1, 16)]
+TAB_Y = [chr(i) for i in range(65, 81)]
+LET_INVALID = ['K']
+PONTUACAO_HIT = 3
+DIR_H = 'H'
+DIR_V = 'V'
+
+TORPEDO_TOTAL = 25
+RULES_NAV = {1: [4, 5], 2: [5, 2], 3: [1, 10], 4: [2, 5] }
+
+class Ship:
+    def criar_navio(id, posicao):
+        direcao = DIR_H
+        if RULES_NAV[id][0] > 1:
+            direcao = posicao[-1]
+            posicao = posicao[:-1]
+
+        ship = []
+        [x, y] = Ship.ler_posicao(posicao)
+        for _ in range(RULES_NAV[id][0]):
+            ship.append([x, y, False])
+            if direcao == DIR_H: x += 1
+            elif direcao == DIR_V: y += 1
+        return ship
     
-    def add_ship(self, x, y, size, direction):
-        if direction == 'H':
-            for i in range(size):
-                if self.board[x][y+i] is not None:
-                    raise Exception('ERROR_OVERWRITE_PIECES_VALIDATION')
-                self.board[x][y+i] = False
-        elif direction == 'V':
-            for i in range(size):
-                if self.board[x+i][y] is not None:
-                    raise Exception('ERROR_OVERWRITE_PIECES_VALIDATION')
-                self.board[x+i][y] = False
+    def verif_navio(ship):
+        cont_acerto = 0
+        pontos = 0
+        for tent_acerto in ship:
+            if tent_acerto[2]:
+                pontos += 3
+                cont_acerto += 1
+        if cont_acerto == len(ship):
+            pontos += 2
+        return pontos
+
+    def ler_posicao(posicao):
+        posicao_x = posicao[1:]
+        posicao_y = posicao[0]
+        if posicao_y in LET_INVALID:
+            raise Exception('ERROR_POSITION_NONEXISTENT_VALIDATION')
+
+        x = TAB_X.index(posicao_x)
+        y = TAB_Y.index(posicao_y)
+
+        if x >= len(TAB_X) or y >= len(TAB_Y):
+            raise Exception('ERROR_POSITION_NONEXISTENT_VALIDATION')
+
+        return [x, y]
     
-    def add_torpedo(self, x, y):
-        if self.board[x][y] is None:
-            self.board[x][y] = True
-            return False
-        elif self.board[x][y] is False:
-            self.board[x][y] = True
-            return True
-        else:
-            return False
-    
-    def get_score(self):
+    def add_torpedo(list, value_string):
+        torpedo_list = value_string.split('|')
+        if len(torpedo_list) != TORPEDO_TOTAL:
+            raise Exception('ERROR_NR_PARTS_VALIDATION')
+        for torpedo in torpedo_list:
+            pos = Ship.ler_posicao(torpedo)
+            list.append(pos)
+
+    def bombardeio(board, torpedo_list):
+        for torpedo in torpedo_list:
+            for ship in board:
+                Ship.acertar_navio(ship, torpedo)
+
+    def acertar_navio(ship, torpedo):
+        for tent_acerto in ship:
+            if torpedo[0] == tent_acerto[0] and torpedo[1] == tent_acerto[1]:
+                tent_acerto[2] = True
+
+    def cont_ponto(board):
+        pontos = 0
         hit = 0
         miss = 0
-        sunk = 0
-        for i in range(15):
-            for j in range(15):
-                if self.board[i][j] is False:
-                    miss += 1
-                elif self.board[i][j] is True:
-                    hit += 1
-        for size in [4, 5, 2, 5]:
-            for i in range(15):
-                for j in range(15):
-                    if self.board[i][j] is False:
-                        continue
-                    if i+size <= 15 and all(self.board[i+k][j] for k in range(size)):
-                        sunk += 1
-                    if j+size <= 15 and all(self.board[i][j+k] for k in range(size)):
-                        sunk += 1
-        return HIT_SCORE*hit + SUNK_BONUS*sunk, hit, miss, sunk
-    
-    def write_results_to_file(self, filename="resultado.txt"):
-        score, hit, miss, sunk = self.get_score()
-        with open(filename, 'w') as f:
-            f.write(f"Score: {score}\n")
-            f.write(f"Hits: {hit}\n")
-            f.write(f"Misses: {miss}\n")
-            f.write(f"Sunk: {sunk}\n")
+        for ship in board:
+            ship_point = Ship.verif_navio(ship)
+            if ship_point == 0: miss += 1
+            else: hit += 1
+            pontos += ship_point
+        return [pontos, hit, miss]
 
-class Player:
-    def __init__(self, player_num):
-        self.board = Board()
-        self.torpedos = []
-        self.player_num = player_num
-    
-    def read_file(self, file_name):
-        data = read_file(file_name)
+class Board:
+    def add_navio_tab(board, id, value_string):
+        id = int(id)
+        ship_list = value_string.split('|')
+        if len(ship_list) != RULES_NAV[id][1]:
+            raise Exception('ERROR_NR_PARTS_VALIDATION')
+        for posicao in ship_list:
+            ship = Ship.criar_navio(id, posicao)
+            board.append(ship)
 
+
+    def verif_sobreposicao_nav(board):
+        piece_list = []
+        for ship in board:
+            for coords in ship:
+                if coords in piece_list: raise Exception('ERROR_OVERWRITE_PIECES_VALIDATION')
+                piece_list.append(coords)
+
+class Game:
+    def ler_arquivo(file_name):
+        file = open(f'./{file_name}.txt', 'r')
+        data = file.read()
+        file.close()
+        return data.splitlines()
+
+    def escrever_result(write_str):
+        file = open('resultado.txt', 'w')
+        file.write(write_str)
+        file.close()
+
+    def gerar_resultado(player, score):
+        write_str = f'J{player} {score[1]}AA {score[2]}AE {score[0]}PT'
+        return write_str
+    
+
+    def escrever_erro(message):
+        Game.escrever_result(message)
+
+    def add_navio_tab(board, id, value_string):
+        id = int(id)
+        ship_list = value_string.split('|')
+        if len(ship_list) != RULES_NAV[id][1]:
+            raise Exception('ERROR_NR_PARTS_VALIDATION')
+        for posicao in ship_list:
+            ship = Ship.criar_navio(id, posicao)
+            board.append(ship)
+
+    def verif_navio(ship):
+        pontos = 0
+        cont_acerto = 0
+        for tent_acerto in ship:
+            if tent_acerto[2]:
+                cont_acerto += 1
+                pontos += 3
+        if cont_acerto == len(ship):
+            pontos += 2
+        
+        return pontos
+
+    def verif_sobreposicao_nav(board):
+        piece_list = []
+        for ship in board:
+            for coords in ship:
+                if coords in piece_list: raise Exception('ERROR_OVERWRITE_PIECES_VALIDATION')
+                piece_list.append(coords)
+
+    def ler_jogador(file_name):
+        data = Game.ler_arquivo(file_name)
+
+        board = []
+        torpedo_list = []
         for line in data:
             if line == '#Jogada':
                 continue
 
-            [code, value_string] = line.split(';')
-            if code == 'T':
-                self.torpedos.extend([get_position(torpedo) for torpedo in value_string.split('|')])
-            else:
-                code = int(code)
-                ship_list = value_string.split('|')
-                if len(ship_list) != SHIP_RULES[code][1]:
-                    raise Exception('ERROR_NR_PARTS_VALIDATION')
-                for pos_dir in ship_list:
-                    direction = DIRECTION_HORIZONTAL if SHIP_RULES[code][0] > 1 else DIRECTION_VERTICAL
-                    x, y = get_position(pos_dir)
-                    self.board.add_ship(x, y, SHIP_RULES[code][0], direction)
-    
-    def resolve_board(self, other_player):
-        for torpedo in self.torpedos:
-            other_player.board.add_torpedo(*torpedo)
-    
-    def get_score(self):
-        return self.board.get_score()
+            [id, value_string] = line.split(';')
+            if id == 'T':
+                Ship.add_torpedo(torpedo_list, value_string)
+                continue
+            
+            Game.add_navio_tab(board, id, value_string)
+            Game.verif_sobreposicao_nav(board)
 
+        return [board, torpedo_list]
 
-class Game:
-    def __init__(self):
-        self.players = [Player(1), Player(2)]
-        self.current_player = 0
-    
-    def play(self):
-        board = Board()
-        self.players[0].read_file('jogador1')
-        self.players[1].read_file('jogador2')
-        self.players[0].resolve_board(self.players[1])
-        self.players[1].resolve_board(self.players[0])
-        score1 = self.players[1].get_score()
-        score2 = self.players[0].get_score()
-        if score1[0] > score2[0]:
-            result_string = generate_result_string(1, score1)
-            board.write_string_in_result(result_string)
-        elif score1[0] < score2[0]:
-            result_string = generate_result_string(2, score2)
-            board.write_string_in_result(result_string)
-        else:
-            result_string = generate_result_string(1, score1) + '\n' + generate_result_string(2, score2)
-            board.write_string_in_result(result_string)
+    def cont_ponto(board):
+        pontos = 0
+        hit = 0
+        miss = 0
+        for ship in board:
+            ship_point = Game.verif_navio(ship)
+            if ship_point == 0: miss += 1
+            else: hit += 1
+            pontos += ship_point
 
-# inica o jogo
-game = Game()
-game.play()
+        return [pontos, hit, miss]
+
+if __name__ == '__main__':
+    err_scope = ''
+    try:
+        err_scope = 'J1'
+        [board_1, torpedo_list_1] = Game.ler_jogador('jogador1')
+        
+        err_scope = 'J2'
+        [board_2, torpedo_list_2] = Game.ler_jogador('jogador2')
+        
+        Ship.bombardeio(board_1, torpedo_list_2)
+        Ship.bombardeio(board_2, torpedo_list_1)
+
+        score_1 = Game.cont_ponto(board_2)
+        score_2 = Game.cont_ponto(board_1)
+
+        if score_1[0] > score_2[0]:
+            result_string = Game.gerar_resultado(1, score_1)
+            Game.escrever_result(result_string)
+
+        if score_1[0] < score_2[0]:
+            result_string = Game.gerar_resultado(2, score_2)
+            Game.escrever_result(result_string)
+
+        if score_1[0] == score_2[0]:
+            result_string = Game.gerar_resultado(1, score_1)
+            result_string += f'\n{Game.gerar_resultado(2, score_2)}'
+            Game.escrever_result(result_string)
+
+    except Exception as err:
+        Game.escrever_erro(f'{err_scope} {str(err)}')
