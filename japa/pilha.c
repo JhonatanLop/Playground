@@ -1,54 +1,79 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct cel {
-  int value;
-  struct cel *next;
-} cel;
+typedef struct doc{
+  char nome;
+  struct doc *next;
+} doc;
 
-// com cabeça
+typedef struct pilha{
+  doc *document;
+  int tamanho;
+} pilha;
 
-cel *add_cell(cel *p, int valor) {
-  cel *new_p = (cel *)malloc(sizeof(cel));
-
-  new_p->value = valor;
-
-  // insere_topo
-  new_p->next = p;
-  return new_p;
+// cria pilha de documentos
+void init_pilha_doc(pilha *p){
+  doc *head = (doc *)malloc(sizeof(doc));
+  head->next = NULL;
+  p->document = head;
+  p->tamanho = 0;
 }
 
-remove_cel(cel *p) {
-  *p = *p->next;
+void push_doc(pilha *p, char valor) {
+  doc *new_doc = (doc *)malloc(sizeof(doc));
+  new_doc->nome = valor;
+  new_doc->next = p->document;
+  p->document = new_doc;
+  p->tamanho++;
 }
 
-void print(cel *p) {
-  cel *aux = p;
-  while (aux->next != NULL) {
-    printf("%d\n", aux->value);
-    aux = aux->next;
+int remove_doc(pilha *p){
+  if (p->tamanho > 0)
+  {
+    doc *lixo = p->document;
+    p->document = p->document->next;
+    printf("%c", lixo->nome);
+    free(lixo);
   }
-  printf("%d\n", aux->value);
-  printf("\n");
 }
 
-int main(int argc, char const *argv[])
-{
-  cel *pilha = (cel *)malloc(sizeof(cel));
-  pilha->value = 1;
-  pilha->next = NULL;
+//printa a pilha
+void print(pilha*p){
+  doc *act = p->document;
+  while (act->next != NULL)
+  {
+    printf("\n%c", act->nome);
+    act = act->next;
+  }
+  printf("\n%c", act->nome);
+}
 
-  pilha = add_cell(pilha, 2);
-  pilha = add_cell(pilha, 3);
-  pilha = add_cell(pilha, 4);
-  pilha = add_cell(pilha, 5);
+int main(int argc, char const *argv[]){
+  pilha *documents = (pilha *)malloc(sizeof(pilha));
 
-  print(pilha);
+  char doc1 = 'A';
+  char doc2 = 'B';
+  char doc3 = 'C';
+  char doc4 = 'D';
 
-  remove_cel(pilha);
-  remove_cel(pilha);
+  push_doc(documents, doc1);
+  push_doc(documents, doc2);
+  push_doc(documents, doc3);
+  push_doc(documents, doc4);
 
-  print(pilha);
+  printf("\nprintado pilha:");
+  print(documents);
+  
+  printf("\nremovendo documento:");
+  remove_doc(documents);
+  
+  printf("\nprintado pilha:");
+  print(documents);
 
-  return 0;
+  printf("\nadicionando documento:");
+  char doc5 = 'E';
+  push_doc(documents,doc5);
+  
+  printf("\nprintado pilha:");
+  print(documents);
 }
