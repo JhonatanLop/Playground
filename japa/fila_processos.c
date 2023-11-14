@@ -18,6 +18,7 @@ void inserir_comando(int comando, cel **init, cel **fim){
   if ((*init) == NULL){
     (*init) = new;
     (*fim) = new;
+    
   } else{
     new->next = (*fim);
     (*fim) = new;
