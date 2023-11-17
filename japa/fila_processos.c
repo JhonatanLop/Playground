@@ -1,65 +1,83 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
+//Estrutura principal
 typedef struct cel {
-  int algoritmo;
+  int conteudo;
   struct cel *next;
 } cel;
 
+//Ponteiros principais
+cel *init = NULL;
+cel *fim = NULL;
 
-// insere pessoa na fila
-void inserir_comando(int comando, cel **init, cel **fim){
+//Insere conteudo na fila
+void Inserir(int conteudo) {
   cel *new = (cel*)malloc(sizeof(cel));
-  new->algoritmo = comando;
+  new->conteudo = conteudo;
   new->next = NULL;
 
-  // Se estiver vazia
-  if ((*init) == NULL){
-    (*init) = new;
-    (*fim) = new;
-    
-  } else{
-    new->next = (*fim);
-    (*fim) = new;
+  //Se estiver vazia
+  if (init == NULL) {
+    init = new;
+    fim = new;
+  } else { //Se não estiver vazia
+    fim->next = new;
+    fim = new;
   }
 }
 
-int extrair_comando(cel *init){
-  if (init){
-    printf("Sem comandos na fila\n");
+//Remover e retornar o primeiro elemento da fila
+int Extrair() {
+  if(init == NULL) {
+    printf("Sem conteudos na fila\n");
     exit(1);
-  } else{
-    cel *p = init->next;
-    init->next = init->next->next;
-    int command = p->algoritmo;
+  } else {
+    int command = init->conteudo;
+    cel *p = init;
+    init = init->next;
     free(p);
     return command;
   }
 }
 
-//printa a pilha
-void print(cel *init){
+//Imprimir a fila
+void PrintLista() {
   cel *p = init;
-  while(p != NULL){
-    printf("%d\n", p->algoritmo);
+  while(p != NULL) {
+    printf("%d->", p->conteudo);
     p = p->next;
+  } printf("\n");
+}
+
+//Liberar a memória
+void LiberarLista() {
+  while(init != NULL) {
+    cel *p = init;
+    init = init->next;
+    free(p);
   }
 }
 
-// função que testa o algoritmo
-int main(){
+//Função principal
+int main(void) {
+  Inserir(3);
+  Inserir(2);
+  Inserir(7);
+  Inserir(2);
+  Inserir(3);
+  Inserir(5);
+  Inserir(9);
+  Inserir(8);
+  Inserir(2);
 
-  int c1 = 3;
-  int c2 = 2;
-  int c3 = 7;
+  PrintLista();
 
-  cel *init = NULL;
-  cel *fim = NULL;
+  Extrair();
+  Extrair();
 
-  inserir_comando(c1, &init, &fim);
-  inserir_comando(c2, &init, &fim);
-  inserir_comando(c3, &init, &fim);
-
-  print(init);
+  PrintLista();
+  
+  LiberarLista();
+  return 0;
 }
