@@ -1,0 +1,32 @@
+# Definir a imagem base
+FROM oracle/database:12.2.0.1-ee
+
+# Instalar dependências
+RUN apt-get update && apt-get install -y libaio1 wget unzip
+
+# Fazer o download do Oracle Instant Client
+RUN wget https://download.oracle.com/otn_software/linux/instantclient/193000/instantclient-basic-linux.x64-19.3.0.0.0dbru.zip
+
+# Definir as variáveis de ambiente
+ENV ORACLE_HOME=/opt/oracle/instantclient_19_3
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME
+ENV TNS_ADMIN=$ORACLE_HOME/network/admin
+
+# Extrair o Oracle Instant Client
+RUN unzip instantclient-basic-linux.x64-19.3.0.0.0dbru.zip -d $ORACLE_HOME
+
+# Fazer o download do Oracle Instant Client SQL*Plus
+RUN wget https://download.oracle.com/otn_software/linux/instantclient/193000/instantclient-sqlplus-linux.x64-19.3.0.0.0dbru.zip
+
+# Extrair o Oracle Instant Client SQL*Plus
+RUN unzip instantclient-sqlplus-linux.x64-19.3.0.0.0dbru.zip -d $ORACLE_HOME
+
+# Copiar os arquivos de configuração
+COPY tnsnames.ora $TNS_ADMIN/
+COPY sqlnet.ora $TNS_ADMIN/
+
+# Define o volume
+VOLUME /opt/oracle/data
+
+# Definir o comando de inicialização do contêiner
+CMD ["bash"]
