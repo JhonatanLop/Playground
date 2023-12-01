@@ -25,15 +25,14 @@ def print_tree(raiz, space=0):
     print_tree(raiz.left, space)
 
 def search_tree(raiz, value):
-    if raiz is None:
-        return
-    if raiz.value == value:
-        print("O valor existe na arvore")
+    if raiz is None or raiz.value == value:
         return raiz
     elif value > raiz.value:
-        search_tree(raiz.right, value)
+        print(raiz.value)
+        return search_tree(raiz.right, value)
     elif value < raiz.value:
-        search_tree(raiz.left, value)
+        print(raiz.value)
+        return search_tree(raiz.left, value)
 
 raiz = None
 raiz = add_branch(raiz,4)
@@ -47,3 +46,4 @@ raiz = add_branch(raiz,1)
 # print_tree(raiz)
 
 node = search_tree(raiz, 6)
+print(node)
