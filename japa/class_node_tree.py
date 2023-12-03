@@ -81,9 +81,16 @@ class Node:
         return self
 
     # verifica a altura da arvore:
-    def heighter(self):
-        # TODO
-        pass
+    def find_height(self, node=None):
+        h_left = 0
+        h_right = 0
+        if self.left:
+            h_left = self.left.find_height(self.left)
+        if self.right:
+            h_right = self.right.find_height(self.right)
+        if h_right > h_left:
+            return h_right + 1
+        return h_left + 1
 
 if __name__ == "__main__":
     tree = Node(4)
@@ -102,7 +109,7 @@ if __name__ == "__main__":
     tree.add_branch(8)
     tree.add_branch(12)
     tree.add_branch(13)
-    # tree.print_tree()
+    tree.print_tree()
 
     # root = tree.find_branch(6)
     # print(root)
@@ -113,4 +120,5 @@ if __name__ == "__main__":
     # print(maximum.value)
     # tree.cut_branch()
     # tree.print_tree()
-    tree.print_postorder()
+    # tree.print_postorder()
+    print(tree.find_height())
