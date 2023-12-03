@@ -4,6 +4,7 @@ class Node:
         self.left = None
         self.right = None
 
+# adiciona um novo nó na árvore
 def add_branch(root, value):
     if root is None:
         return Node(value)
@@ -14,6 +15,7 @@ def add_branch(root, value):
             root.right = add_branch(root.right, value)
     return root
 
+# imprime a arvore
 def print_tree(root, space=0):
     if root is None:
         return
@@ -24,45 +26,62 @@ def print_tree(root, space=0):
     print(" " * space, root.value)
     print_tree(root.left, space)
 
+# procura um nó na arvore
 def search_branch(root, value):
     if root is None or root.value == value:
         return root
     elif value > root.value:
         return search_branch(root.right, value)
-    elif value < root.value:
+    else:
         return search_branch(root.left, value)
 
+# acha o menor valor daquela raiz
 def find_minumum_value(root):
     if root is None or root.left is None:
         return root
     return find_minumum_value(root.left)
 
+# acha o maior valor daquela raiz
 def find_maximum_value(root):
     if root is None or root.right is None:
         return root
     return find_maximum_value(root.right)
 
-def cut_branch(root, value):
-    node = search_branch(root, value)
-    if node is None:
+# exclui um nó da arvore
+def cut_branch(root, node_to_remove):
+    if root is None:
         return root
+    if node_to_remove.value < root.value:
+        root.left = cut_branch(root.left, node_to_remove)
+    elif node_to_remove.value > root.value:
+        root.right = cut_branch(root.right, node_to_remove)
+    else:
+        if root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+        temp = find_maximum_value(root.left)
+        root.value = temp.value
+        root.left = cut_branch(root.left, search_branch(root.left, temp.value))
+    return root
 
-# def cut_branch(root, value):
-#     if root is None:
-#         return root
-#     if value < root.value:
-#         root.left = cut_branch(root.left, value)
-#     elif value > root.value:
-#         root.right = cut_branch(root.right, value)
-#     else:
-#         if root.left is None:
-#             return root.right
-#         elif root.right is None:
-#             return root.left
-#         temp = find_maximum_value(root.left)
-#         root.value = temp.value
-#         root.left = cut_branch(root.left, temp.value)
-#     return root
+# verifica a largura da arvore
+def verify_width_tree(root, size=0):
+    return
+
+def verif_height_tree(root, size):
+    return
+
+def postorder(root):
+    if root is None:
+        return root
+    if root.left:
+        postorder(root.left)
+    if root.right:
+        postorder(root.right)
+    print(root.value)
+
+# verifica a profundidade da arvore
 
 root = None
 root = add_branch(root,4)
@@ -94,5 +113,10 @@ root = add_branch(root,13)
 
 # print(find_maximum_value(root.left))
 
-root = cut_branch(root, 4)
-print_tree(root)
+# node_to_remove = search_branch(root, 11)
+# root = cut_branch(root, node_to_remove)
+
+# print_tree(root)
+
+# size = verify_width_tree(root)
+postorder(root)
