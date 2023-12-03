@@ -3,6 +3,9 @@ class Node:
         self.value = value
         self.left = None
         self.right = None
+    
+    def __str__(self) -> str:
+        return(self.value)
 
 # adiciona um novo nó na árvore
 def add_branch(root, value):
@@ -72,6 +75,7 @@ def verify_width_tree(root, size=0):
 def verif_height_tree(root, size):
     return
 
+# printa em pós-ordem
 def postorder(root):
     if root is None:
         return root
@@ -80,6 +84,9 @@ def postorder(root):
     if root.right:
         postorder(root.right)
     print(root.value)
+
+def height(self, node=None):
+    return
 
 # verifica a profundidade da arvore
 
