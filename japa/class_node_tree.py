@@ -29,6 +29,13 @@ class Node:
         if self.left:
             self.left.print_tree(space + 2)
 
+    def print_postorder(self):
+        if self.left:
+            self.left.print_postorder()
+        if self.right:
+            self.right.print_postorder()
+        print(self.value)
+
     # encontra um nó e retorna o mesmo
     def find_branch(self, value):
         if self is None or self.value == value:
@@ -73,6 +80,11 @@ class Node:
             self.left = self.left.cut_branch(temp_value)
         return self
 
+    # verifica a altura da arvore:
+    def heighter(self):
+        # TODO
+        pass
+
 if __name__ == "__main__":
     tree = Node(4)
     tree.add_branch(6)
@@ -99,5 +111,6 @@ if __name__ == "__main__":
     # maximum = tree.find_max_value()
     # print(maximum.value)
     # print(maximum.value)
-    tree.cut_branch()
-    tree.print_tree()
+    # tree.cut_branch()
+    # tree.print_tree()
+    tree.print_postorder()
