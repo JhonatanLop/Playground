@@ -34,13 +34,10 @@ class Node:
         if self is None or self.value == value:
             return self
         elif value < self.value:
-            if self.left is not None:
-                return self.left.find_branch(value)
+            return self.left.find_branch(value)
         else:
-            if self.right is not None:
-                return self.right.find_branch(value)
-        return None
-    
+            return self.right.find_branch(value)
+
     # encontra o menor nó de uma arvore
     def find_minimum_value(self):
         if self is None:
@@ -56,11 +53,28 @@ class Node:
         elif self.right is not None:
             return self.right.find_max_value()
         return self
-
+    
+    # apaga um nó da arvore
+    def cut_branch(self, value=None):
+        node_to_remove = self.find_branch(value)
+        if node_to_remove is None:
+            return self
+        if self.value < node_to_remove.value:
+            self.right = self.right.cut_branch(value)
+        elif self.value > node_to_remove.value:
+            self.left = self.left.cut_branch(value)
+        else:
+            if self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.left
+            temp_value = self.left.find_max_value().value
+            self.value = temp_value
+            self.left = self.left.cut_branch(temp_value)
+        return self
 
 if __name__ == "__main__":
     tree = Node(4)
-    tree.add_branch(4)
     tree.add_branch(6)
     tree.add_branch(5)
     tree.add_branch(2)
@@ -82,5 +96,8 @@ if __name__ == "__main__":
     # print(root)
     # minimum = tree.find_minimum_value()
     # print(minimum.value)
-    maximum = tree.find_max_value()
-    print(maximum.value)
+    # maximum = tree.find_max_value()
+    # print(maximum.value)
+    # print(maximum.value)
+    tree.cut_branch()
+    tree.print_tree()
