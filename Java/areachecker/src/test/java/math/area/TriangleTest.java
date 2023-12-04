@@ -19,7 +19,7 @@ public class TriangleTest {
         triangulo.setSize_side(medida_lados);
 
         // Act
-        triangulo.calculate_area(triangulo);
+        triangulo.calcularArea();
 
         // Assert
         assertEquals(10.825317547305483, triangulo.getArea(), 0.0001);
@@ -34,7 +34,7 @@ public class TriangleTest {
         triangulo.setSize_side(medida_lados);
 
         // Act
-        triangulo.calculate_area(triangulo);
+        triangulo.calcularArea();
 
         // Assert
         assertEquals(6.0, triangulo.getArea(), 0.0001);

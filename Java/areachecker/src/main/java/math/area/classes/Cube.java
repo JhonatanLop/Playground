@@ -10,14 +10,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Cube {
-    double side;
-    double area;
+public class Cube implements Geometry {
+    private double side;
+    private double area;
 
-    public void calculate_area(Cube cube) {
+    public double calcularArea() {
         // formula para cubo
         // lado³
-        double area = cube.getSide() * cube.getSide() * cube.getSide();
-        cube.setArea(area);
+        double area = side * side * side;
+        setArea(area);
+        return getArea();
     }
 }

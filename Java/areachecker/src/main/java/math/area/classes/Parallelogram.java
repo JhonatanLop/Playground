@@ -10,15 +10,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Parallelogram {
-    double height;
-    double base;
-    double area;
+public class Parallelogram implements Geometry{
+    private double height;
+    private double base;
+    private double area;
 
-    public void calculate_area(Parallelogram parallelogram) {
+    public double calcularArea() {
         // formula para paralelogramo
         // base * altura
-        double area = parallelogram.getBase() * parallelogram.getHeight();
-        parallelogram.setArea(area);
+        double area = base * height;
+        setArea(area);
+        return getArea();
     }
 }

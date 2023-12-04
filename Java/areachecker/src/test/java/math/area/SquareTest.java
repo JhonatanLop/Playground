@@ -14,7 +14,7 @@ public class SquareTest {
         square.setSize_side(5);
 
         // Act
-        square.calculate_area(square);
+        square.calcularArea();
 
         // Assert
         assertEquals(25.0, square.getArea(), 0.0001);

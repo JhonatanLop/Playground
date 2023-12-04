@@ -7,16 +7,30 @@ import org.junit.Test;
 import math.area.classes.Circle;
 
 public class CircleTest {
+    
     @Test
-    public void testeCalculoAreaCirculo() {
+    public void testCalculoAreaCirculoWithZeroRadius() {
         // Arrange
         Circle circle = new Circle();
-        circle.setRadius(5);
-
+        circle.setRadius(0);
+    
         // Act
-        circle.calculate_area(circle);
-
+        circle.calcularArea();
+    
         // Assert
-        assertEquals(78.53981633974483, circle.getArea(), 0.0001);
+        assertEquals(0, circle.getArea(), 0.0001);
+    }
+    
+    @Test
+    public void testCalculoAreaCirculoWithNegativeRadius() {
+        // Arrange
+        Circle circle = new Circle();
+        circle.setRadius(-5);
+    
+        // Act
+        circle.calcularArea();
+    
+        // Assert
+        assertEquals(0, circle.getArea(), 0.0001);
     }
 }

@@ -9,9 +9,9 @@ public class DiamondTest {
     @Test
     public void testCalculateArea() {
         Diamond diamond = new Diamond();
-        diamond.setLerger_diagonal(10);
+        diamond.setLarger_diagonal(10);
         diamond.setSmaller_diagonal(5);
-        diamond.calculate_area(diamond);
+        diamond.calcularArea();
         assert(diamond.getArea() == 25);
     }
 }

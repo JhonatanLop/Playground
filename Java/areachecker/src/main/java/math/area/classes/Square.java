@@ -9,14 +9,16 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Square {
+
+public class Square implements Geometry{
     double size_side;
     double area;
 
-    public void calculate_area(Square square) {
+    public double calcularArea() {
         // formula para quadrado
         // lado * lado
-        double area = square.getSize_side() * square.getSize_side();
-        square.setArea(area);
+        double area = size_side * size_side;
+        setArea(area);
+        return getArea();
     }
 }

@@ -10,15 +10,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Diamond {
-    double lerger_diagonal;
-    double smaller_diagonal;
-    double area;
+public class Diamond implements Geometry{
+    private double larger_diagonal;
+    private double smaller_diagonal;
+    private double area;
 
-    public void calculate_area(Diamond diamond) {
+    public double calcularArea() {
         // formula para losango
         // (diagonal maior * diagonal menor) / 2
-        double area = (diamond.getLerger_diagonal() * diamond.getSmaller_diagonal()) / 2;
-        diamond.setArea(area);
+        double area = (larger_diagonal * smaller_diagonal) / 2;
+        setArea(area);
+        return getArea();
     }
 }

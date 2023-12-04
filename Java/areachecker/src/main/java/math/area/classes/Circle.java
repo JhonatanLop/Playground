@@ -10,14 +10,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Circle {
-    double radius;
-    double area;
+public class Circle implements Geometry{
+    private double radius;
+    private double area;
 
-    public void calculate_area(Circle circle) {
+    public double calcularArea() {
         // formula para circulo
         // pi * raio²
-        double area = Math.PI * circle.getRadius() * circle.getRadius();
-        circle.setArea(area);
+        setArea(area);
+        return getArea();
     }
 }

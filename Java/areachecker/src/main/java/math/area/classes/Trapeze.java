@@ -10,16 +10,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Trapeze {
-    double height;
-    double smaller_base;
-    double larger_base;
-    double area;
+public class Trapeze implements Geometry{
+    private double height;
+    private double smaller_base;
+    private double larger_base;
+    private double area;
 
-    public void calculate_area(Trapeze trapeze) {
+    public double calcularArea() {
         // formula para trapezio
         // (base maior + base menor) * altura / 2
-        double area = ((trapeze.getLarger_base() + trapeze.getSmaller_base()) * trapeze.getHeight()) / 2;
-        trapeze.setArea(area);
+        double area = ((larger_base + smaller_base) * height) / 2;
+        setArea(area);
+        return getArea();
     }
 }
