@@ -2,7 +2,7 @@ package math.area;
 
 import org.junit.Test;
 
-import math.area.Classes.Cube;
+import math.area.classes.Cube;
 
 public class CubeTest {
     

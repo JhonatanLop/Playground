@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import math.area.Classes.Parallelogram;
+import math.area.classes.Parallelogram;
 
 public class ParallelogramTest {
     

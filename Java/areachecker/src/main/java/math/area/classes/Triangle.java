@@ -1,4 +1,4 @@
-package math.area.Classes;
+package math.area.classes;
 
 import java.util.List;
 

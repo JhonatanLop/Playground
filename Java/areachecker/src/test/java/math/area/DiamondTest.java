@@ -2,7 +2,7 @@ package math.area;
 
 import org.junit.Test;
 
-import math.area.Classes.Diamond;
+import math.area.classes.Diamond;
 
 public class DiamondTest {
     

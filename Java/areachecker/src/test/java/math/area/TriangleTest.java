@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import math.area.Classes.Triangle;
+import math.area.classes.Triangle;
 
 public class TriangleTest {
     @Test
