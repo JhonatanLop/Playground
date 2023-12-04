@@ -38,35 +38,41 @@ create table Funcionario(
     CONSTRAINT fk_dep_cod FOREIGN KEY (dep_cod) references Departamento(dep_cod)
 );
 
-insert into Estado (est_cod, est_estado) values (1, 'São Paulo');
-insert into Estado (est_cod, est_estado) values (2, 'Rio de Janeiro');
-insert into Estado (est_cod, est_estado) values (3, 'Minas Gerais');
-insert into Estado (est_cod, est_estado) values (4, 'Bahia');
-insert into Estado (est_cod, est_estado) values (5, 'Paraná');
+create sequence seq_est start with 1 increment by 1;
+create sequence seq_cid start with 1 increment by 1;
+create sequence seq_car start with 1 increment by 1;
+create sequence seq_dep start with 1 increment by 1;
+create sequence seq_fun start with 1 increment by 1;
 
-insert into Cargo (car_cod, car_descricao) values (1,'Gerente');
-insert into Cargo (car_cod, car_descricao) values (2,'Analista');
-insert into Cargo (car_cod, car_descricao) values (3,'Assistente');
-insert into Cargo (car_cod, car_descricao) values (4,'Estagiário');
-insert into Cargo (car_cod, car_descricao) values (5,'Coordenador');
+insert into Estado (est_cod, est_estado) values (seq_est.nextval, 'São Paulo');
+insert into Estado (est_cod, est_estado) values (seq_est.nextval, 'Rio de Janeiro');
+insert into Estado (est_cod, est_estado) values (seq_est.nextval, 'Minas Gerais');
+insert into Estado (est_cod, est_estado) values (seq_est.nextval, 'Bahia');
+insert into Estado (est_cod, est_estado) values (seq_est.nextval, 'Paraná');
 
-insert into Cidade (cid_cod, est_cod, cid_nome) values (1, 1, 'São Paulo');
-insert into Cidade (cid_cod, est_cod, cid_nome) values (2, 2, 'Rio de Janeiro');
-insert into Cidade (cid_cod, est_cod, cid_nome) values (3, 3, 'Belo Horizonte');
-insert into Cidade (cid_cod, est_cod, cid_nome) values (4, 4, 'Salvador');
-insert into Cidade (cid_cod, est_cod, cid_nome) values (5, 5, 'Curitiba');
+insert into Cargo (car_cod, car_descricao) values (seq_car.nextval,'Gerente');
+insert into Cargo (car_cod, car_descricao) values (seq_car.nextval,'Analista');
+insert into Cargo (car_cod, car_descricao) values (seq_car.nextval,'Assistente');
+insert into Cargo (car_cod, car_descricao) values (seq_car.nextval,'Estagiário');
+insert into Cargo (car_cod, car_descricao) values (seq_car.nextval,'Coordenador');
 
-insert into Departamento (dep_cod,dep_descricao) values (1,'Vendas');
-insert into Departamento (dep_cod,dep_descricao) values (2,'RH');
-insert into Departamento (dep_cod,dep_descricao) values (3,'Marketing');
-insert into Departamento (dep_cod,dep_descricao) values (4,'TI');
-insert into Departamento (dep_cod,dep_descricao) values (5,'Logisticca');
+insert into Cidade (cid_cod, est_cod, cid_nome) values (seq_cid.nextval, 1, 'São Paulo');
+insert into Cidade (cid_cod, est_cod, cid_nome) values (seq_cid.nextval, 2, 'Rio de Janeiro');
+insert into Cidade (cid_cod, est_cod, cid_nome) values (seq_cid.nextval, 3, 'Belo Horizonte');
+insert into Cidade (cid_cod, est_cod, cid_nome) values (seq_cid.nextval, 4, 'Salvador');
+insert into Cidade (cid_cod, est_cod, cid_nome) values (seq_cid.nextval, 5, 'Curitiba');
 
-insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (1, 'Rua A', 'João', 5000.00, 1, 1234, 100, 1, 1, 1);
-insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (2, 'Rua B', 'Maria', 4000.00, 2, 5678, 200, 2, 2, 2);
-insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (3, 'Rua C', 'Pedro', 3500.00, 3, 9012, 300, 3, 3, 3);
-insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (4, 'Rua D', 'Ana', 3000.00, 4, 3456, 400, 4, 4, 4);
-insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (5, 'Rua E', 'Carlos', 2500.00, 5, 7890, 500, 5, 5, 5);
+insert into Departamento (dep_cod,dep_descricao) values (seq_dep.nextval,'Vendas');
+insert into Departamento (dep_cod,dep_descricao) values (seq_dep.nextval,'RH');
+insert into Departamento (dep_cod,dep_descricao) values (seq_dep.nextval,'Marketing');
+insert into Departamento (dep_cod,dep_descricao) values (seq_dep.nextval,'TI');
+insert into Departamento (dep_cod,dep_descricao) values (seq_dep.nextval,'Logisticca');
+
+insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (seq_fun.nextval, 'Rua A', 'João', 5000.00, 1, 1234, 100, 1, 1, 1);
+insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (seq_fun.nextval, 'Rua B', 'Maria', 4000.00, 2, 5678, 200, 2, 2, 2);
+insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (seq_fun.nextval, 'Rua C', 'Pedro', 3500.00, 3, 9012, 300, 3, 3, 3);
+insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (seq_fun.nextval, 'Rua D', 'Ana', 3000.00, 4, 3456, 400, 4, 4, 4);
+insert into Funcionario (fun_cod, fun_Logradouro, fun_nome, fun_salario, car_cod, fun_cep, fun_nro, cid_cod, est_cod, dep_cod) values (seq_fun.nextval, 'Rua E', 'Carlos', 2500.00, 5, 7890, 500, 5, 5, 5);
 
 -- 2
 create or replace view Funcionario_View as select
@@ -120,7 +126,7 @@ select text from all_views where view_name = 'FUNCIONARIO_VIEW';
 -- 8
 
 --A respeito de uma view criada no Oracle, marque com X a (s) resposta(s) correta(s):
---( ) A. Por meio de uma view os dados apenas podem ser vistos. -- NÃO POIS É POSSÍVEL INSERIR/ALTERAR DADOS ATRAVÉZ DE UMA VIEW SE DECLARADA CORRETAMENTE
+--( ) A. Por meio de uma view os dados apenas podem ser vistos. -- NÃO POIS É POSSÍVEL INSERIR/ALTERAR DADOS ATRAVÉZ DE UMA VIEW SE DECLARADA CORRETAMENTE EMBORA OS DADOS NÃO FIQUEM SALVOS NA VIEW E SIM NAS TABELAS FÍSICAS
 --( ) B. Tabela virtual na qual os dados estão fisicamente armazenados. -- NÃO, OS DADOS SÃO ARMAZENADOS NA TABELA, A VIEW É APENAS UMA REPRESETAÇÃO LÓGICA
 --(X) C. Utilizada para evitar que usuários não autorizados tenham acesso a todos os dados de uma tabela.
 --( ) D. Para remover uma view utilizamos o seguinte comando delete view <nome da view>. -- USA-SE "DROP VIEW <nome da view>;"
