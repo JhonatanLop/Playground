@@ -79,4 +79,4 @@ Para isso ele considerou as seguintes regras como sendo suas necessidades:
 
 Dadas as necessidades do Seu Astolfo e assumindo-se que todas as classes possuem métodos getter e setter (usar Lombok ou gerá-las através da IDE), vamos ajudar o Seu Astolfo a implementar as abstrações representadas no diagrama de classes abaixo e a lógica necessária para atender tais necessidades. Mãos à obra!
 
-![](./assets/picture1.png)
+![](./areachecker/assets/picture1.png)
