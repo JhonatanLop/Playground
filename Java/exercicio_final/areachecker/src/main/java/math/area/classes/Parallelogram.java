@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import math.area.interfaces.Shape;
+import math.area.interfaces.Calculable;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Parallelogram implements Shape{
+public class Parallelogram implements Calculable{
     private double height;
     private double base;
     private double area;

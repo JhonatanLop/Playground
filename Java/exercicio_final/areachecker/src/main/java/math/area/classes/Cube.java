@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import math.area.interfaces.Shape;
+import math.area.interfaces.Calculable;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Cube implements Shape {
+public class Cube implements Calculable {
     private double side;
     private double area;
 

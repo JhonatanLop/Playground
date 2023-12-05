@@ -6,14 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import math.area.interfaces.Shape;
+import math.area.interfaces.Calculable;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Triangle implements Shape{
+public class Triangle implements Calculable{
     int qtd_pontos;
     List<Integer> sizeSide;
     double area;
