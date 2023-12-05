@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Diamond implements Geometry{
+public class Diamond implements Shape{
     private double larger_diagonal;
     private double smaller_diagonal;
     private double area;

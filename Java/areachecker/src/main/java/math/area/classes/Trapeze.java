@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Trapeze implements Geometry{
+public class Trapeze implements Shape{
     private double height;
     private double smaller_base;
     private double larger_base;

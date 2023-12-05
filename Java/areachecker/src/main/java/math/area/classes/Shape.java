@@ -1,5 +1,5 @@
 package math.area.classes;
 
-public interface Geometry {
+public interface Shape {
     public double calcularArea();
 }

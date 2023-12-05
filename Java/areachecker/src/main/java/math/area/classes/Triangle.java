@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Triangle implements Geometry{
+public class Triangle implements Shape{
     int qtd_pontos;
     List<Integer> sizeSide;
     double area;

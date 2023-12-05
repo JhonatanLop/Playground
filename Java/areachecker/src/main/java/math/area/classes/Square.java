@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Square implements Geometry{
+public class Square implements Shape{
     double size_side;
     double area;
 

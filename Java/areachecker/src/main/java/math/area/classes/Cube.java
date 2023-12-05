@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Cube implements Geometry {
+public class Cube implements Shape {
     private double side;
     private double area;
 

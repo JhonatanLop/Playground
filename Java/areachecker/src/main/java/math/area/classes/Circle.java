@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Circle implements Geometry{
+public class Circle implements Shape{
     private double radius;
     private double area;
 

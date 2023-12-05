@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Parallelogram implements Geometry{
+public class Parallelogram implements Shape{
     private double height;
     private double base;
     private double area;
