@@ -21,7 +21,6 @@ public class Trapeze implements Calculable{
         // formula para trapezio
         // (base maior + base menor) * altura / 2
         double area = ((larger_base + smaller_base) * height) / 2;
-        setArea(area);
-        return getArea();
+        return area;
     }
 }

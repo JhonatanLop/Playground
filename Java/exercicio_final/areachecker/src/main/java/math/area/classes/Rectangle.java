@@ -14,13 +14,11 @@ import math.area.interfaces.Calculable;
 public class Rectangle implements Calculable{
     private double base;
     private double height;
-    private double area;
 
     public double calcularArea() {
         // formula para retangulo
         // base * altura
         double area = getBase() * getHeight();
-        setArea(area);
-        return getArea();
+        return area;
     }
 }

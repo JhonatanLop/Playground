@@ -34,16 +34,14 @@ public class Triangle implements Calculable{
             double semi_perimetro = (sizeSide.get(0) + sizeSide.get(1) + sizeSide.get(2)) / 2;
             double area = Math.sqrt(semi_perimetro * (semi_perimetro - sizeSide.get(0))
                     * (semi_perimetro - sizeSide.get(1)) * (semi_perimetro - sizeSide.get(2)));
-            setArea(area);
-            return getArea();
+            return area;
         } else
         // formula para o triângulo equilatero
         if (sizeSide.get(0) == sizeSide.get(1) && sizeSide.get(0) == sizeSide.get(2)
                 && sizeSide.get(1) == sizeSide.get(2)) {
             // area = (lado * lado * raiz de 3) / 4
             double area = (sizeSide.get(0) * sizeSide.get(0) * Math.sqrt(3)) / 4;
-            setArea(area);
-            return getArea();
+            return area;
         } else
         // formula para o triângulo isósceles
         if (sizeSide.get(0) == sizeSide.get(1) && sizeSide.get(0) != sizeSide.get(2)
@@ -65,8 +63,7 @@ public class Triangle implements Calculable{
                 altura = (int) Math.sqrt((sizeSide.get(1) * sizeSide.get(1)) - (base * base) / 4);
             }
             double area = (base * altura) / 2;
-            setArea(area);
-            return getArea();
+            return area;
         }
         // formula para o triângulo retângulo
         else {
@@ -74,8 +71,7 @@ public class Triangle implements Calculable{
             // cateto = lado diferente
             // item 0 é a altura e 2 é a base
             double area = (sizeSide.get(0) * sizeSide.get(2)) / 2;
-            setArea(area);
-            return getArea();
+            return area;
         }
     }
 }

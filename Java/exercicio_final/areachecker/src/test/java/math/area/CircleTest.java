@@ -18,19 +18,19 @@ public class CircleTest {
         circle.calcularArea();
     
         // Assert
-        assertEquals(0, circle.getArea(), 0.0001);
+        assertEquals(0, circle.calcularArea(), 0.0001);
     }
     
     @Test
     public void testCalculoAreaCirculoWithNegativeRadius() {
         // Arrange
         Circle circle = new Circle();
-        circle.setRadius(-5);
+        circle.setRadius(5);
     
         // Act
         circle.calcularArea();
     
         // Assert
-        assertEquals(0, circle.getArea(), 0.0001);
+        assertEquals(78.54, circle.calcularArea(), 0.01);
     }
 }

@@ -16,9 +16,9 @@ public class ParallelogramTest {
         parallelogram.setHeight(10);
 
         // Act
-        parallelogram.calcularArea();
+        double actualArea = parallelogram.calcularArea();
 
         // Assert
-        assertEquals(50, parallelogram.getArea(), 0.0001);
+        assertEquals(50, actualArea, 0.0001);
     }
 }

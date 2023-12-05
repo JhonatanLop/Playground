@@ -14,13 +14,11 @@ import math.area.interfaces.Calculable;
 public class Parallelogram implements Calculable{
     private double height;
     private double base;
-    private double area;
 
     public double calcularArea() {
         // formula para paralelogramo
         // base * altura
         double area = base * height;
-        setArea(area);
-        return getArea();
+        return area;
     }
 }

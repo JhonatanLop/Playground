@@ -11,7 +11,7 @@ public class RhombusTest {
         Rhombus rhombus = new Rhombus();
         rhombus.setLarger_diagonal(10);
         rhombus.setSmaller_diagonal(5);
-        rhombus.calcularArea();
-        assert(rhombus.getArea() == 25);
+        double actualArea = rhombus.calcularArea();
+        assert(actualArea == 25);
     }
 }

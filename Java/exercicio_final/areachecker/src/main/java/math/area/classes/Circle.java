@@ -18,7 +18,7 @@ public class Circle implements Calculable{
     public double calcularArea() {
         // formula para circulo
         // pi * raio²
-        setArea(area);
-        return getArea();
+        double area = Math.PI * Math.pow(getRadius(), 2);
+        return area;
     }
 }

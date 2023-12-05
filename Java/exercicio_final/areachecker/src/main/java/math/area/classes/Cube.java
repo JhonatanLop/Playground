@@ -13,13 +13,11 @@ import math.area.interfaces.Calculable;
 
 public class Cube implements Calculable {
     private double side;
-    private double area;
 
     public double calcularArea() {
         // formula para cubo
         // lado³
         double area = side * side * side;
-        setArea(area);
-        return getArea();
+        return area;
     }
 }

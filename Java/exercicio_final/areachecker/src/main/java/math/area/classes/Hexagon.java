@@ -13,13 +13,11 @@ import math.area.interfaces.Calculable;
 
 public class Hexagon implements Calculable{
     private double sideLength;
-    private double area;
 
     public double calcularArea() {
         // formula para o hexágono
         // (3 * raiz(3) * lado²) / 2
         double area = (6 * Math.pow(sideLength, 2) * Math.sqrt(3)) / 4;
-        setArea(area);
-        return getArea();
+        return area;
     }
 }
