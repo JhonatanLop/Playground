@@ -13,7 +13,6 @@ import math.area.interfaces.Calculable;
 
 public class Circle implements Calculable{
     private double radius;
-    private double area;
 
     public double calcularArea() {
         // formula para circulo

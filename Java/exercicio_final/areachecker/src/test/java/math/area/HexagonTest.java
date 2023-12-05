@@ -11,7 +11,7 @@ public class HexagonTest {
     @Test
     public void testCalculateArea() {
         Hexagon hexagon = new Hexagon();
-        hexagon.setSideLength(5);
+        hexagon.setSide(5);
         double expectedArea = 64.9519052838329;
         double actualArea = hexagon.calcularArea();
         assertEquals(expectedArea, actualArea, 0.001);
@@ -20,7 +20,7 @@ public class HexagonTest {
     @Test
     public void testCalculateAreaWithZeroSideLength() {
         Hexagon hexagon = new Hexagon();
-        hexagon.setSideLength(0);
+        hexagon.setSide(0);
         double expectedArea = 0;
         double actualArea = hexagon.calcularArea();
         assertEquals(expectedArea, actualArea, 0.001);

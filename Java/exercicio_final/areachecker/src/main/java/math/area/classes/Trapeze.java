@@ -15,7 +15,6 @@ public class Trapeze implements Calculable{
     private double height;
     private double smaller_base;
     private double larger_base;
-    private double area;
 
     public double calcularArea() {
         // formula para trapezio

@@ -12,12 +12,12 @@ import math.area.interfaces.Calculable;
 @NoArgsConstructor
 
 public class Square implements Calculable{
-    double size_side;
+    double side;
 
     public double calcularArea() {
         // formula para quadrado
         // lado * lado
-        double area = size_side * size_side;
+        double area = side * side;
         return area;
     }
 }

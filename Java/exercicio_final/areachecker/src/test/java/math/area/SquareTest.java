@@ -11,7 +11,7 @@ public class SquareTest {
     public void testeCalculoAreaQuadrado() {
         // Arrange
         Square square = new Square();
-        square.setSize_side(5);
+        square.setSide(5);
 
         // Act
         double actualArea = square.calcularArea();

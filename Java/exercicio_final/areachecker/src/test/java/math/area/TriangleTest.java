@@ -14,9 +14,8 @@ public class TriangleTest {
     public void testCalculateAreaEquilateralTriangle() {
         // Arrange
         Triangle triangulo = new Triangle();
-        triangulo.setQtd_pontos(3);
-        List<Integer> medida_lados = Arrays.asList(5, 5, 5);
-        triangulo.setSizeSide(medida_lados);
+        List<Double> medida_lados = Arrays.asList(5.0, 5.0, 5.0);
+        triangulo.setSide(medida_lados);
 
         // Act
         double actualArea = triangulo.calcularArea();
@@ -29,9 +28,8 @@ public class TriangleTest {
     public void testCalculateAreaScaleneTriangle() {
         // Arrange
         Triangle triangulo = new Triangle();
-        triangulo.setQtd_pontos(3);
-        List<Integer> medida_lados = Arrays.asList(3, 4, 5);
-        triangulo.setSizeSide(medida_lados);
+        List<Double> medida_lados = Arrays.asList(3.0, 4.0, 5.0);
+        triangulo.setSide(medida_lados);
 
         // Act
         double actualArea = triangulo.calcularArea();
@@ -44,24 +42,22 @@ public class TriangleTest {
     public void testCalculateAreaIsoscelesTriangle() {
         // Arrange
         Triangle triangulo = new Triangle();
-        triangulo.setQtd_pontos(3);
-        List<Integer> medida_lados = Arrays.asList(4, 4, 5);
-        triangulo.setSizeSide(medida_lados);
+        List<Double> medida_lados = Arrays.asList(4.0, 4.0, 5.0);
+        triangulo.setSide(medida_lados);
 
         // Act
         double actualArea = triangulo.calcularArea();
 
         // Assert
-        assertEquals(7.0, actualArea, 0.0001);
+        assertEquals(7.81, actualArea, 0.01);
     }
 
     @Test
     public void testCalculateAreaRightTriangle() {
         // Arrange
         Triangle triangulo = new Triangle();
-        triangulo.setQtd_pontos(3);
-        List<Integer> medida_lados = Arrays.asList(3, 4, 5);
-        triangulo.setSizeSide(medida_lados);
+        List<Double> medida_lados = Arrays.asList(3.0, 4.0, 5.0);
+        triangulo.setSide(medida_lados);
 
         // Act
         double actualArea = triangulo.calcularArea();
