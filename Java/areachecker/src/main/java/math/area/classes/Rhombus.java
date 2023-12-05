@@ -11,7 +11,7 @@ import math.area.interfaces.Shape;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Diamond implements Shape{
+public class Rhombus implements Shape{
     private double larger_diagonal;
     private double smaller_diagonal;
     private double area;
