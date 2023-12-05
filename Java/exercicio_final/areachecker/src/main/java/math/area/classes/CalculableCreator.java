@@ -10,9 +10,9 @@ public class CalculableCreator implements CalculableFactory{
     public Calculable createRectangle(double base, double height) { return new Rectangle(base, height); }
     public Calculable createCircle(double radius) { return new Circle(radius); }
     public Calculable createTriangle(List<Double> sides) { return new Triangle(sides); }
-    public Calculable createParallelogram() { return new Parallelogram(); }
-    public Calculable createTrapeze() { return new Trapeze(); }
-    public Calculable createHexagon() { return new Hexagon(); }
-    public Calculable createRhombus() { return new Rhombus(); }
-    public Calculable createCube() { return new Cube(); }
+    public Calculable createParallelogram(double base, double height) { return new Parallelogram(base, height); }
+    public Calculable createTrapeze(double height, double smaller_base, double larger_base) { return new Trapeze(height, smaller_base, larger_base); }
+    public Calculable createHexagon(double side) { return new Hexagon(side); }
+    public Calculable createRhombus(double larger_diagonal, double smaller_diagonal) { return new Rhombus(larger_diagonal, smaller_diagonal); }
+    public Calculable createCube(double side) { return new Cube(side); }
 }
