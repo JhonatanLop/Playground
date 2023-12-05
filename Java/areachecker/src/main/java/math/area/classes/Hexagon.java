@@ -1,14 +1,24 @@
 package math.area.classes;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Hexagon {
     private double sideLength;
-
-    public Hexagon(double sideLength) {
-        this.sideLength = sideLength;
-    }
+    private double area;
 
     public double calcularArea() {
-        double apothem = sideLength * Math.sqrt(3) / 2;
-        return (3 * Math.sqrt(3) * sideLength * sideLength) / 2;
+        // formula para o hexágono
+        // (3 * raiz(3) * lado²) / 2
+        double area = (6 * Math.pow(sideLength, 2) * Math.sqrt(3)) / 4;
+        setArea(area);
+        return getArea();
     }
 }

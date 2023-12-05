@@ -16,7 +16,7 @@ public class TriangleTest {
         Triangle triangulo = new Triangle();
         triangulo.setQtd_pontos(3);
         List<Integer> medida_lados = Arrays.asList(5, 5, 5);
-        triangulo.setSize_side(medida_lados);
+        triangulo.setSizeSide(medida_lados);
 
         // Act
         triangulo.calcularArea();
@@ -31,7 +31,37 @@ public class TriangleTest {
         Triangle triangulo = new Triangle();
         triangulo.setQtd_pontos(3);
         List<Integer> medida_lados = Arrays.asList(3, 4, 5);
-        triangulo.setSize_side(medida_lados);
+        triangulo.setSizeSide(medida_lados);
+
+        // Act
+        triangulo.calcularArea();
+
+        // Assert
+        assertEquals(6.0, triangulo.getArea(), 0.0001);
+    }
+
+    @Test
+    public void testCalculateAreaIsoscelesTriangle() {
+        // Arrange
+        Triangle triangulo = new Triangle();
+        triangulo.setQtd_pontos(3);
+        List<Integer> medida_lados = Arrays.asList(4, 4, 5);
+        triangulo.setSizeSide(medida_lados);
+
+        // Act
+        triangulo.calcularArea();
+
+        // Assert
+        assertEquals(7.0, triangulo.getArea(), 0.0001);
+    }
+
+    @Test
+    public void testCalculateAreaRightTriangle() {
+        // Arrange
+        Triangle triangulo = new Triangle();
+        triangulo.setQtd_pontos(3);
+        List<Integer> medida_lados = Arrays.asList(3, 4, 5);
+        triangulo.setSizeSide(medida_lados);
 
         // Act
         triangulo.calcularArea();
