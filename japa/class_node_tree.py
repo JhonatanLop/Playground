@@ -61,6 +61,10 @@ class Node:
             return self.right.find_max_value()
         return self
     
+    #TODO
+    # pensar em uma forma de fazer o balanceamento da arvore
+    # pensar em passar o nó a ser removido no parâmetro
+    # verifica a altura da arvore:
     # apaga um nó da arvore
     def cut_branch(self, value=None):
         node_to_remove = self.find_branch(value)
@@ -80,7 +84,6 @@ class Node:
             self.left = self.left.cut_branch(temp_value)
         return self
 
-    # verifica a altura da arvore:
     def find_height(self, node=None):
         h_left = 0
         h_right = 0
@@ -109,7 +112,7 @@ if __name__ == "__main__":
     tree.add_branch(8)
     tree.add_branch(12)
     tree.add_branch(13)
-    tree.print_tree()
+    # tree.print_tree()
 
     # root = tree.find_branch(6)
     # print(root)
@@ -118,7 +121,7 @@ if __name__ == "__main__":
     # maximum = tree.find_max_value()
     # print(maximum.value)
     # print(maximum.value)
-    # tree.cut_branch()
-    # tree.print_tree()
+    # tree.cut_branch(-2)
+    tree.print_tree()
     # tree.print_postorder()
-    print(tree.find_height())
+    # print(tree.find_height())
