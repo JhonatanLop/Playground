@@ -50,9 +50,9 @@ Foco da Atividade
 
 ## Como executar:
 
-1. baixe o arquivo na pasta ```project/areachecker.zip```
-2. entre na pasta raiz do projeto
-3. execute os comando em sequência:
+1. baixe e extraia o arquivo da pasta ```./project/exercicio_final.zip```
+2. na raiz do projeto execute os comando em sequência:
+    1. ```cd areachecker``` - para entrar nessa atividade
     1. ```mvn clean install``` - para instalar as dependências
     2. ```mvn exec:java``` - para executar o projeto
     3. ```mvn test``` - para executar a rotina de testes
@@ -78,5 +78,13 @@ Para isso ele considerou as seguintes regras como sendo suas necessidades:
 * As abstrações de item de compra e lista de compra deverão respeitar uma interface comum
 
 Dadas as necessidades do Seu Astolfo e assumindo-se que todas as classes possuem métodos getter e setter (usar Lombok ou gerá-las através da IDE), vamos ajudar o Seu Astolfo a implementar as abstrações representadas no diagrama de classes abaixo e a lógica necessária para atender tais necessidades. Mãos à obra!
+
+## Como executar:
+
+1. baixe e extraia o arquivo da pasta ```./project/exercicio_final.zip```
+2. na raiz do projeto execute os comando em sequência:
+    1. ```cd exercicio2``` - para entrar nessa atividade
+    1. ```mvn clean install``` - para instalar as dependências
+    2. ```mvn exec:java``` - para executar o projeto
 
 ![](./areachecker/assets/picture1.png)
