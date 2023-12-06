@@ -18,7 +18,15 @@ public class ItemCompra implements Calculavel{
 
     public ItemCompra(Produto produto, double desconto) {
         this.produto = produto;
-        this.desconto = desconto;
+        // limitando desconto
+        if (desconto > produto.getDescontoMaximo()){
+            this.desconto = produto.getDescontoMaximo();
+        }
+        else if (desconto < 0){
+            this.desconto = 0;
+        } else {
+            this.desconto = desconto;
+        }
     }
 
     @Override
