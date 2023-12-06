@@ -46,8 +46,6 @@ public class App
         System.out.println(lista1.calcularPreco());
 
         // calculando preco por item
-        System.out.println(item1.calcularPreco());
-
-
+        System.out.println(item2.calcularPreco());
     }
 }
