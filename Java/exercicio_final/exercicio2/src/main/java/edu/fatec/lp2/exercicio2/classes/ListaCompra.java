@@ -24,7 +24,11 @@ public class ListaCompra implements Calculavel{
     }
 
     public void incluir(ItemCompra item) {
-        if (this.itensCompra.size() >= qtdeMax) {
+        int qtdtAtual = 0;
+        for (ItemCompra itemCompra : this.itensCompra) {
+            qtdtAtual += itemCompra.getQuantidade();
+        }
+        if (qtdtAtual >= qtdeMax) {
             System.out.println("Lista cheia");
         } else {
             this.itensCompra.add(item);
