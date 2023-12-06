@@ -23,6 +23,8 @@ public class ItemCompra implements Calculavel{
 
     @Override
     public double calcularPreco() {
-        return (this.produto.getPreco() * this.quantidade) - this.desconto;
+        double preco = this.produto.getPreco();
+        double precoFinal = preco - (preco * desconto);
+        return precoFinal;
     }
 }
