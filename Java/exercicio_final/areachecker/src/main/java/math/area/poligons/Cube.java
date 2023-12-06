@@ -1,4 +1,4 @@
-package math.area.classes;
+package math.area.poligons;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,18 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import math.area.interfaces.Calculable;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Circle implements Calculable{
-    private double radius;
+public class Cube implements Calculable {
+    private double side;
 
     public double calcularArea() {
-        // formula para circulo
-        // pi * raio²
-        double area = Math.PI * Math.pow(getRadius(), 2);
+        // formula para cubo
+        // lado³
+        double area = side * side * side;
         return area;
     }
 }

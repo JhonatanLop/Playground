@@ -2,7 +2,7 @@ package math.area;
 
 import org.junit.Test;
 
-import math.area.classes.Rhombus;
+import math.area.poligons.Rhombus;
 
 public class RhombusTest {
     

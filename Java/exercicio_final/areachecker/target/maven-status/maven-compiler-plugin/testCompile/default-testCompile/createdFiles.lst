@@ -2,6 +2,7 @@ math/area/AppTest.class
 math/area/ParallelogramTest.class
 math/area/CircleTest.class
 math/area/HexagonTest.class
+edu/fatec/lp2/exercicio2/AppTest.class
 math/area/TriangleTest.class
 math/area/CubeTest.class
 math/area/SquareTest.class

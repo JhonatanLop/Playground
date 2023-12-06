@@ -1,4 +1,4 @@
-package math.area.classes;
+package math.area.poligons;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,13 +11,13 @@ import math.area.interfaces.Calculable;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Cube implements Calculable {
-    private double side;
+public class Square implements Calculable{
+    double side;
 
     public double calcularArea() {
-        // formula para cubo
-        // lado³
-        double area = side * side * side;
+        // formula para quadrado
+        // lado * lado
+        double area = side * side;
         return area;
     }
 }

@@ -2,7 +2,7 @@ package math.area;
 
 import org.junit.Test;
 
-import math.area.classes.Rectangle;
+import math.area.poligons.Rectangle;
 
 public class RectangleTest {
     

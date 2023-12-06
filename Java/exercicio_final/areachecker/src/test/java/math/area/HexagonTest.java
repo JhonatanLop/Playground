@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import math.area.classes.Hexagon;
+import math.area.poligons.Hexagon;
 
 public class HexagonTest {
     

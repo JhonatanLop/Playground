@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import math.area.classes.Square;
+import math.area.poligons.Square;
 
 public class SquareTest {
     @Test

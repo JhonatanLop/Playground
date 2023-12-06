@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import math.area.classes.Cube;
+import math.area.poligons.Cube;
 
 public class CubeTest {
     

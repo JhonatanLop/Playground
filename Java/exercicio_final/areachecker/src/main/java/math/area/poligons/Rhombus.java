@@ -1,4 +1,4 @@
-package math.area.classes;
+package math.area.poligons;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

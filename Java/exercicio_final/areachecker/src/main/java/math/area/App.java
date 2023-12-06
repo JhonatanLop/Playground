@@ -1,10 +1,8 @@
 package math.area;
 
-import java.util.Arrays;
-
-import math.area.classes.CalculableCreator;
 import math.area.interfaces.Calculable;
 import math.area.interfaces.CalculableFactory;
+import math.area.shapes.CalculableCreator;
 
 public class App
 {
@@ -16,7 +14,8 @@ public class App
         Calculable quadrado = factory.createSquare(5);
         Calculable retângulo = factory.createRectangle(8,3);
         Calculable círculo = factory.createCircle(5);
-        Calculable triângulo = factory.createTriangle(Arrays.asList(3.0,4.0,5.0));
+        Double[] sides = new Double[]{3.0, 4.0, 5.0};
+        Calculable triângulo = factory.createTriangle(sides);
         Calculable paralelograma = factory.createParallelogram(5, 3);
         Calculable trapézio = factory.createTrapeze(5, 3, 4);
         Calculable hexágono = factory.createHexagon(5);

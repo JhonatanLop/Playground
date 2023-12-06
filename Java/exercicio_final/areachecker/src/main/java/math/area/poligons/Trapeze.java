@@ -1,4 +1,4 @@
-package math.area.classes;
+package math.area.poligons;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,14 +11,15 @@ import math.area.interfaces.Calculable;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Parallelogram implements Calculable{
+public class Trapeze implements Calculable{
     private double height;
-    private double base;
+    private double smaller_base;
+    private double larger_base;
 
     public double calcularArea() {
-        // formula para paralelogramo
-        // base * altura
-        double area = base * height;
+        // formula para trapezio
+        // (base maior + base menor) * altura / 2
+        double area = ((larger_base + smaller_base) * height) / 2;
         return area;
     }
 }

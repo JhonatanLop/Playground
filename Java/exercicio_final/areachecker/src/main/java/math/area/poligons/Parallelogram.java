@@ -1,4 +1,4 @@
-package math.area.classes;
+package math.area.poligons;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,19 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import math.area.interfaces.Calculable;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Rectangle implements Calculable{
-    private double base;
+public class Parallelogram implements Calculable{
     private double height;
+    private double base;
 
     public double calcularArea() {
-        // formula para retangulo
+        // formula para paralelogramo
         // base * altura
-        double area = getBase() * getHeight();
+        double area = base * height;
         return area;
     }
 }

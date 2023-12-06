@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import math.area.classes.Circle;
+import math.area.poligons.Circle;
 
 public class CircleTest {
     
