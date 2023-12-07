@@ -3,9 +3,6 @@ class Node:
         self.value = value
         self.left = None
         self.right = None
-    
-    def __str__(self) -> str:
-        return(self.value)
 
     # adiciona um novo nó
     def add_branch(self, value):
@@ -66,22 +63,22 @@ class Node:
     # pensar em passar o nó a ser removido no parâmetro
     # verifica a altura da arvore:
     # apaga um nó da arvore
-    def cut_branch(self, value=None):
-        node_to_remove = self.find_branch(value)
-        if node_to_remove is None:
-            return self
-        if self.value < node_to_remove.value:
-            self.right = self.right.cut_branch(value)
-        elif self.value > node_to_remove.value:
-            self.left = self.left.cut_branch(value)
-        else:
+    def cut_branch(self, node_to_remove):
+        if self is node_to_remove:
             if self.left is None:
                 return self.right
             elif self.right is None:
                 return self.left
-            temp_value = self.left.find_max_value().value
-            self.value = temp_value
-            self.left = self.left.cut_branch(temp_value)
+            else:
+                min_value_right_subtree = self.right.find_minimum_value()
+                self.value = min_value_right_subtree
+                self.right = self.right.cut_branch(min_value_right_subtree)
+        elif node_to_remove.value < self.value:
+            if self.left:
+                self.left = self.left.cut_branch(node_to_remove)
+        elif node_to_remove.value > self.value:
+            if self.right:
+                self.right = self.right.cut_branch(node_to_remove)
         return self
 
     def find_height(self, node=None):
@@ -112,16 +109,20 @@ if __name__ == "__main__":
     tree.add_branch(8)
     tree.add_branch(12)
     tree.add_branch(13)
-    # tree.print_tree()
+    tree.print_tree()
 
-    # root = tree.find_branch(6)
-    # print(root)
+    node = tree.find_branch(8)
+    # root.print_tree()
+    # node.cut_branch()
+    tree = tree.cut_branch(node)
+    print("----")
+    tree.print_tree()
+
     # minimum = tree.find_minimum_value()
     # print(minimum.value)
     # maximum = tree.find_max_value()
     # print(maximum.value)
     # print(maximum.value)
-    # tree.cut_branch(-2)
-    tree.print_tree()
+    # tree.print_tree()
     # tree.print_postorder()
     # print(tree.find_height())
